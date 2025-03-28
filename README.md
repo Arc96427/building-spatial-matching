@@ -1,31 +1,29 @@
 # Building Spatial Matching
 
-Deep learning approaches for matching and integrating building footprints between OpenStreetMap and official datasets.
+A project for matching and enriching building footprints between OSM (OpenStreetMap) and official data sources using deep learning approaches.
 
 ## Project Overview
 
-This project addresses the challenge of matching and integrating building data from different sources, specifically OpenStreetMap (OSM) and official municipal datasets. Using deep learning approaches, we achieve highly accurate spatial matching and attribute integration, creating enriched building datasets for urban planning, disaster response, and smart city applications.
+This project implements two deep learning approaches to match building geometries between different data sources:
 
-Key features:
-- Polygon-to-image conversion for neural network processing
-- Custom CNN-based autoencoder for building feature extraction
-- Transfer learning approach using pre-trained ResNet18
-- Cosine similarity-based building matching
-- Attribute fusion from OSM to official building records
+1. **CNN Autoencoder**: Converts building polygons to images, learns a compact representation, and matches buildings based on feature similarity
+2. **ResNet Feature Extractor**: Uses a pre-trained ResNet model to extract features from building images for matching
 
-Our ResNet-based approach achieves 99.95% matching accuracy on 5,749 buildings in Munich's Maxvorstadt district, significantly outperforming traditional geometric methods.
+The matching process not only improves the geometric alignment between datasets but also enriches building entities with additional semantic attributes like usage type, accessibility, and metadata from different sources.
 
 ## Repository Structure
 
 ```
 building-spatial-matching/
 ├── data/                     # Data directory (not tracked by git)
-├── notebooks/                # Jupyter notebooks
+│   ├── raw/                  # Original data files
+│   └── processed/            # Processed datasets and outputs
+├── notebooks/                # Jupyter notebooks for exploration 
 ├── src/                      # Source code
 │   ├── data.py               # Data processing functions
-│   ├── models.py             # Model implementations (Autoencoder and ResNet)
+│   ├── models.py             # Model implementations
 │   ├── matching.py           # Building matching algorithms
-│   └── utils.py              # Utility functions (image conversion, visualization)
+│   └── utils.py              # Utility functions
 ├── scripts/                  # Executable scripts
 │   ├── run_autoencoder.py    # Run autoencoder approach
 │   └── run_resnet.py         # Run ResNet approach
@@ -35,123 +33,86 @@ building-spatial-matching/
 
 ## Installation
 
-### Prerequisites
-
-- Python 3.8 or higher
-- GDAL for geospatial data processing
-- PyTorch 1.9+ with CUDA support (recommended for GPU acceleration)
-
-### Option 1: Using conda (recommended)
-
+1. Clone the repository:
 ```bash
-# Clone the repository
-git clone https://github.com/chihchiwang/building-spatial-matching.git
+git clone https://github.com/Arc96427/building-spatial-matching.git
 cd building-spatial-matching
-
-# Create and activate conda environment
-conda env create -f environment.yml
-conda activate building-matching
-
-# Install the package in development mode
-pip install -e .
 ```
 
-### Option 2: Using pip
-
+2. Create and activate a virtual environment (optional but recommended):
 ```bash
-# Clone the repository
-git clone https://github.com/chihchiwang/building-spatial-matching.git
-cd building-spatial-matching
-
-# Create a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-# Install dependencies
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
-
-# Install the package in development mode
-pip install -e .
 ```
 
 ## Data Preparation
 
-### Downloading the Data
+Place your data files in the `data/raw/` directory:
+- OSM building data: `maxvorstadt_osm.geojson`
+- Official building data: `maxvorstadt_official.geojson`
+
+Both files should contain building polygon geometries in GeoJSON format.
+
+## Running the Code
+
+### Autoencoder Approach
 
 ```bash
-# Run the data download script
-python scripts/download_data.py --region maxvorstadt
+python scripts/run_autoencoder.py
 ```
 
-This script will download:
-1. OpenStreetMap data for the specified region using Overpass API
-2. Administrative boundaries from Geofabrik
+This will:
+- Convert building polygons to images
+- Train an autoencoder to learn building representations
+- Match buildings based on feature similarity
+- Merge attributes from matched buildings
+- Generate visualizations and statistics
 
-**Note**: The Bavarian Building Footprint dataset must be manually downloaded from the Landesamt für Digitalisierung, Breitband und Vermessung website due to licensing restrictions. After downloading, place the files in the `data/raw/` directory.
-
-### Data Preprocessing
+### ResNet Approach
 
 ```bash
-# Preprocess the raw data
-python src/data/preprocess.py --input_dir data/raw --output_dir data/processed
+python scripts/run_resnet.py
 ```
 
-This script will:
-- Reproject all datasets to EPSG:4326
-- Extract buildings within the Maxvorstadt district
-- Create necessary files for model training
+This will:
+- Convert building polygons to images
+- Use ResNet18 to extract building features
+- Match buildings based on feature similarity
+- Merge attributes from matched buildings
+- Generate visualizations and statistics
 
-## Running the Models
+## Results
 
-### CNN Autoencoder Approach
+The processed results will be saved in the `data/processed/` directory:
+- Merged GeoJSON files containing enriched building data
+- Matching statistics text files
+- Visualizations of building matches
+- Similarity distribution plots
 
-```bash
-# Run the CNN autoencoder approach
-python scripts/run_autoencoder.py \
-    --data_dir data/processed \
-    --output_dir results/autoencoder \
-    --epochs 50 \
-    --batch_size 32 \
-    --learning_rate 0.001 \
-    --latent_dim 64 \
-    --similarity_threshold 0.85
-```
+## Features
 
-### ResNet Feature Extraction Approach
+- Converts building polygon geometries to image representations
+- Uses deep learning to extract meaningful features from building shapes
+- Matches buildings across datasets based on shape similarity
+- Enriches building entities with attributes from both sources
+- Provides visualizations and statistics for matching performance
 
-```bash
-# Run the ResNet approach
-python scripts/run_resnet.py \
-    --data_dir data/processed \
-    --output_dir results/resnet \
-    --output_dim 128 \
-    --similarity_threshold 0.85
-```
+## Requirements
 
-## Evaluating Results
+- Python 3.7+
+- PyTorch
+- GeoPandas
+- NumPy
+- OpenCV
+- Matplotlib
+- scikit-learn
+- torchvision
 
-```bash
-# Evaluate matching results
-python src/utils/evaluation.py \
-    --ground_truth data/processed/ground_truth.geojson \
-    --predictions results/resnet/matched_buildings.geojson \
-    --output results/evaluation_metrics.json
-```
-
-## Visualizing Results
-
-```bash
-# Generate visualizations of matching results
-python src/utils/visualization.py \
-    --input_dir results/resnet \
-    --output_dir visualizations
-```
-
-Alternatively, you can use the Jupyter notebook for interactive visualizations:
-
-```bash
-jupyter notebook notebooks/results_visualization.ipynb
-```
 
 ## Contributing
 
