@@ -1,7 +1,5 @@
 # Building Spatial Matching
 
-A project for matching and enriching building footprints between OSM (OpenStreetMap) and official data sources using deep learning approaches.
-
 ## Project Overview
 
 The matching process not only improves the geometric alignment between datasets but also enriches building entities with additional semantic attributes like usage type, accessibility, and metadata from different sources.
