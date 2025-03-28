@@ -19,38 +19,18 @@ Our ResNet-based approach achieves 99.95% matching accuracy on 5,749 buildings i
 
 ```
 building-spatial-matching/
-├── data/                        # Data directory (not tracked by git)
-│   ├── raw/                     # Original data files
-│   └── processed/               # Processed datasets
-├── notebooks/                   # Jupyter notebooks for exploration and visualization
-│   ├── data_exploration.ipynb   # Dataset analysis
-│   └── results_visualization.ipynb  # Visualizing matching results
-├── src/                         # Source code
-│   ├── data/                    # Data loading and processing scripts
-│   │   ├── __init__.py
-│   │   ├── load_data.py         # Functions to load GeoJSON files
-│   │   └── preprocess.py        # Data preprocessing functions
-│   ├── models/                  # Model implementations
-│   │   ├── __init__.py
-│   │   ├── autoencoder.py       # CNN autoencoder implementation
-│   │   └── resnet.py            # ResNet feature extractor implementation
-│   ├── matching/                # Building matching algorithms
-│   │   ├── __init__.py
-│   │   ├── similarity.py        # Similarity calculation functions
-│   │   └── threshold.py         # Threshold-based matching
-│   └── utils/                   # Utility functions
-│       ├── __init__.py
-│       ├── polygon_to_image.py  # Convert polygons to images
-│       ├── evaluation.py        # Evaluation metrics
-│       └── visualization.py     # Visualization functions
-├── scripts/                     # Executable scripts
-│   ├── download_data.py         # Script to download required datasets
-│   ├── run_autoencoder.py       # Run the CNN autoencoder approach
-│   └── run_resnet.py            # Run the ResNet approach
-├── requirements.txt             # Project dependencies
-├── environment.yml              # Conda environment file
-├── LICENSE                      # License information
-└── README.md                    # Project documentation
+├── data/                     # Data directory (not tracked by git)
+├── notebooks/                # Jupyter notebooks
+├── src/                      # Source code
+│   ├── data.py               # Data processing functions
+│   ├── models.py             # Model implementations (Autoencoder and ResNet)
+│   ├── matching.py           # Building matching algorithms
+│   └── utils.py              # Utility functions (image conversion, visualization)
+├── scripts/                  # Executable scripts
+│   ├── run_autoencoder.py    # Run autoencoder approach
+│   └── run_resnet.py         # Run ResNet approach
+├── requirements.txt          # Project dependencies
+└── README.md                 # Project documentation
 ```
 
 ## Installation
@@ -187,7 +167,7 @@ If you use this code in your research, please cite:
 
 ```
 @misc{wang2025building,
-  author = {Wang, Chih-Chi},
+  author = {Arc964},
   title = {Building Spatial Matching: Deep Learning Approaches for Integrating OpenStreetMap with Official Datasets},
   year = {2025},
   publisher = {GitHub},
