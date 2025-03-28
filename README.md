@@ -20,8 +20,6 @@ Our ResNet-based approach achieves 99.95% matching accuracy on 5,749 buildings i
 
 ## Repository Structure
 
-## Repository Structure
-
 ```
 building-spatial-matching/
 ├── data/                     # Data directory (not tracked by git)
