@@ -117,7 +117,7 @@ python src/data/preprocess.py --input_dir data/raw --output_dir data/processed
 ```
 
 This script will:
-- Reproject all datasets to EPSG:25832
+- Reproject all datasets to EPSG:4326
 - Extract buildings within the Maxvorstadt district
 - Create necessary files for model training
 
