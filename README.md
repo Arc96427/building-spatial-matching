@@ -136,13 +136,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 If you use this code in your research, please cite:
 
 ```
-@misc{wang2025building,
+@software{building_spatial_matching,
   author = {Arc964},
   title = {Building Spatial Matching: Deep Learning Approaches for Integrating OpenStreetMap with Official Datasets},
   year = {2025},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/chihchiwang/building-spatial-matching}}
+  url = {https://github.com/Arc96427/building-spatial-matching}
 }
 ```
 
