@@ -4,12 +4,23 @@ A project for matching and enriching building footprints between OSM (OpenStreet
 
 ## Project Overview
 
-This project implements two deep learning approaches to match building geometries between different data sources:
+The matching process not only improves the geometric alignment between datasets but also enriches building entities with additional semantic attributes like usage type, accessibility, and metadata from different sources.
 
+This project addresses the challenge of matching and integrating building data from different sources, specifically OpenStreetMap (OSM) and official municipal datasets. Using deep learning approaches, we achieve highly accurate spatial matching and attribute integration, creating enriched building datasets for urban planning, disaster response, and smart city applications.
+This project implements two deep learning approaches to match building geometries between different data sources:
 1. **CNN Autoencoder**: Converts building polygons to images, learns a compact representation, and matches buildings based on feature similarity
 2. **ResNet Feature Extractor**: Uses a pre-trained ResNet model to extract features from building images for matching
+   
+Key features:
+- Polygon-to-image conversion for neural network processing
+- Custom CNN-based autoencoder for building feature extraction
+- Transfer learning approach using pre-trained ResNet18
+- Cosine similarity-based building matching
+- Attribute fusion from OSM to official building records
 
-The matching process not only improves the geometric alignment between datasets but also enriches building entities with additional semantic attributes like usage type, accessibility, and metadata from different sources.
+Our ResNet-based approach achieves 99.95% matching accuracy on 5,749 buildings in Munich's Maxvorstadt district, significantly outperforming traditional geometric methods.
+
+## Repository Structure
 
 ## Repository Structure
 
