@@ -3,6 +3,16 @@ import sys
 import torch
 import numpy as np
 
+
+#将项目根目录添加到Python路径
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# 现在可以导入src目录下的模块
+from src.data import (
+    load_osm_data, load_official_data, get_desired_columns,
+    prepare_image_dataset, prepare_data_for_autoencoder,
+    set_random_seeds, get_device
+)
 # Add the src directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -38,4 +48,4 @@ def main():
     model_path = os.path.join(output_dir, 'building_autoencoder_model.pth')
     merged_data_path = os.path.join(output_dir, 'merged_with_autoencoder.geojson')
     stats_path = os.path.join(output_dir, 'autoencoder_matching_statistics.txt')
-    matches_viz_path = os.path.join(output_dir, 'building_matches_
+    matches_viz_path = os.path.join(output_dir, 'building_matches')

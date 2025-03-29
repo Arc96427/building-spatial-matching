@@ -83,7 +83,7 @@ This will:
 ### ResNet Approach
 
 ```bash
-python scripts/run_resnet.py
+python scripts/run_resnet.py.py
 ```
 
 This will:

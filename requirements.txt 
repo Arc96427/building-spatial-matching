@@ -1,0 +1,11 @@
+cat > building-spatial-matching/requirements.txt << EOL
+geopandas
+numpy
+matplotlib
+shapely
+opencv-python
+torch
+torchvision
+scikit-learn
+pandas
+EOL
