@@ -1,4 +1,3 @@
-cat > building-spatial-matching/requirements.txt << EOL
 geopandas
 numpy
 matplotlib

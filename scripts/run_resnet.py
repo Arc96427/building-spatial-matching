@@ -31,9 +31,10 @@ def main():
     SIMILARITY_THRESHOLD = 0.85
 
     # Set file paths
-    osm_file_path = os.path.join('data', 'raw', 'maxvorstadt_osm.geojson')
-    official_file_path = os.path.join('data', 'raw', 'maxvorstadt_official.geojson')
-    output_dir = os.path.join('data', 'processed')
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    osm_file_path = os.path.join(project_root, 'data', 'raw', 'maxvorstadt_osm.geojson')
+    official_file_path = os.path.join(project_root, 'data', 'raw', 'maxvorstadt_official.geojson')
+    output_dir = os.path.join(project_root, 'data', 'processed')
     vectors_dir = os.path.join(output_dir, 'vectors')
     os.makedirs(vectors_dir, exist_ok=True)
 
