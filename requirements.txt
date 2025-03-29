@@ -7,4 +7,3 @@ torch
 torchvision
 scikit-learn
 pandas
-EOL
