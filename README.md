@@ -80,6 +80,8 @@ This will:
 - Merge attributes from matched buildings
 - Generate visualizations and statistics
 
+  ![Architecture_Autoencoder](./data/autoencode.svg)
+
 ### ResNet Approach
 
 ```bash
