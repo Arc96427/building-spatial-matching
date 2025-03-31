@@ -148,6 +148,6 @@ If you use this code in your research, please cite:
 
 ## Acknowledgments
 
-- Technical University of Munich (TUM) and the AI4EO course
+- Technical University of Munich (TUM) and the AI4EO course ([ED110156]  AI4EO Platforms and Best Practices)
 - OpenStreetMap contributors for the building data
 - Landesamt für Digitalisierung, Breitband und Vermessung for the official building data
