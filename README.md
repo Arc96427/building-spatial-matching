@@ -72,7 +72,8 @@ Both files should contain building polygon geometries in GeoJSON format.
 ```bash
 python scripts/run_autoencoder.py
 ```
-
+  ![Architecture_Autoencoder](data/Autoencode_CNN.svg)
+  
 This will:
 - Convert building polygons to images
 - Train an autoencoder to learn building representations
@@ -80,13 +81,14 @@ This will:
 - Merge attributes from matched buildings
 - Generate visualizations and statistics
 
-  ![Architecture_Autoencoder](data/Autoencode_CNN.svg)
 
 ### ResNet Approach
 
 ```bash
 python scripts/run_resnet.py.py
 ```
+
+  ![Architecture_Autoencoder](data/ResNet.svg)
 
 This will:
 - Convert building polygons to images
